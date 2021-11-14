@@ -40,6 +40,11 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
+    protected function redirectPath()
+    {
+      return '/';
+    }
+
     public function showRegistrationForm()
     {
         return view('register');
