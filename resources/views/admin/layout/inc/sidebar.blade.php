@@ -33,10 +33,10 @@
           </li>
           <li class="nav-header">Information</li>
           <li class="nav-item">
-            <a href="{{url('/dashboard/settings')}}" class="nav-link" id="settings">
-              <i class="nav-icon fas fa-circle"></i>
+            <a href="{{ route('users') }}" class="nav-link" id="users">
+              <i class="nav-icon fas fa-users"></i>
               <p>
-                Settings
+                Users
               </p>
             </a>
           </li>

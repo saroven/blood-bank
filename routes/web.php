@@ -42,9 +42,7 @@ Route::prefix('dashboard')->group(function (){
 
     Route::resource('category', categoryController::class);
 
-    Route::get('settings', function (){
-        return view('admin.settings');
-    })->name('settings');
+    Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users');
 
     Route::get('/', function (){
         return view('admin.home');
