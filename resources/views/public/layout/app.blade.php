@@ -45,10 +45,10 @@
 
             <ul class="mobile_device_top_menu d-sm-none">
               <li>
-                <a href="{{ route('public.login') }}" style="margin-left: 0"> login </a>
+                <a href="{{ route('login') }}" style="margin-left: 0"> login </a>
               </li>
               <li>
-                <a href="{{ route('public.register') }}" class="active">Register</a>
+                <a href="{{ route('register') }}" class="active">Register</a>
               </li>
             </ul>
 
@@ -110,7 +110,7 @@
           <div class="col-lg-4 col-md-4">
             <div class="footer-item">
               <ul class="footer-menu">
-                <li><a href="{{ route('public.register') }}">Registration</a></li>
+                <li><a href="{{ route('register') }}">Registration</a></li>
                 <li><a href="{{ route('public.userGuide') }}">User Guide</a></li>
                 <li><a href="{{ route('public.faq') }}">Frequently Asked Questions</a></li>
                 <li><a href="#">About Us</a></li>
