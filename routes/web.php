@@ -40,10 +40,6 @@ Route::name('public.')->group(function (){
 
 Route::prefix('dashboard')->group(function (){
 
-    Route::get('login', function (){
-        return view('admin.login');
-    })->name('login');
-
     Route::resource('category', categoryController::class);
 
     Route::get('settings', function (){
@@ -56,5 +52,7 @@ Route::prefix('dashboard')->group(function (){
 });
 
 Auth::routes();
-
+Route::get('admin-login', function (){
+        return view('admin.login');
+    })->name('admin-login');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
