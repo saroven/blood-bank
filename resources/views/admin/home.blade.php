@@ -69,7 +69,8 @@
           array('id' => '64','division_id' => '8','name' => 'Netrokona','bn_name' => 'নেত্রকোণা','lat' => '24.870955','lon' => '90.727887','url' => 'www.netrokona.gov.bd')
         );
 foreach ($districts as $item){
-    echo $item['name'];
+    $data = $item['name'];
+    echo "['name' => '"."$data'],"."<br>";
 }
     @endphp
 @endsection
