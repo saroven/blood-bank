@@ -53,6 +53,5 @@ Route::prefix('dashboard')->group(function (){
 
 Auth::routes();
 Route::get('/home', function (){
-    return view('home');
-//    return redirect('/');
+    return redirect('/');
 })->name('home');
