@@ -26,7 +26,7 @@
                             <td>@php echo $user['email'] @endphp</td>
                             <td>
                                 <a href="#" class="btn btn-primary">EDIT</a>
-                                <a href="#" class="btn btn-danger">DELETE</a>
+                                <a id="delete" href="#" class="btn btn-danger">DELETE</a>
                             </td>
                         </tr>
                     @endforeach
@@ -42,7 +42,11 @@
 @section('siteTitle', 'Users ')
 @section('pageTitle', 'Users ')
 @section('script')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        let deleteButton = document.getElementById('delete');
+        console.log(deleteButton)
         navActive('users');
     </script>
+
 @endsection
