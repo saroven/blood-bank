@@ -28,7 +28,7 @@
       <form method="POST" action="{{ route('register') }}">
           @csrf
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Full name" id="name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+          <input type="text" placeholder="Full name" id="name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>

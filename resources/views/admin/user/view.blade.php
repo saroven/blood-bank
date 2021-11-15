@@ -5,6 +5,9 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Manage all users.</h3>
+                  <div class="text-right">
+                    <a href="{{ route('addUser') }}" class="btn btn-info">Add User</a>
+                  </div>
               </div>
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0">
@@ -26,7 +29,7 @@
                             <td>{{ $user->email }}</td>
                             <td>
                                 <a href="#" class="btn btn-primary">EDIT</a>
-                                <a href="{{ "#id=".$user->id }}" class="btn btn-danger deleteButton">DELETE</a>
+                                <a href="{{ "#id=".$user->id }}" class="btn btn-danger">DELETE</a>
                             </td>
                         </tr>
                     @endforeach
