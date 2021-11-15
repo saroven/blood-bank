@@ -47,6 +47,7 @@ Route::prefix('dashboard')->group(function (){
     Route::get('/', function (){
         return view('admin.home');
     })->name('dashboard');
+    Route::get('blood-request', [\App\Http\Controllers\BloodRequest::class, 'index'])->name('dashboard.bloodRequest');
 });
 
 Auth::routes();

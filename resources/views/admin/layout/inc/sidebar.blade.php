@@ -41,10 +41,10 @@
             </a>
           </li>
             <li class="nav-item">
-                <a href="{{url('/dashboard/category')}}" class="nav-link" id="category">
+                <a href="{{ route('dashboard.bloodRequest') }}" class="nav-link" id="bloodRequest">
                   <i class="nav-icon fas fa-circle"></i>
                   <p>
-                    Category
+                    Blood Requests
                   </p>
                 </a>
             </li>
