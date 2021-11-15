@@ -1,5 +1,10 @@
 @extends('admin.layout.app')
 @section('mainContent')
+        @if(session()->has('error'))
+            <x-error-message :message="session('error')" />
+            @elseif(session()->has('success'))
+            <x-success-message :message="session('success')" />
+        @endif
     <div class="row">
           <div class="col-12">
             <div class="card">

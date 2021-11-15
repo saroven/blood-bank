@@ -13,12 +13,12 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form method="post" action="{{ route('insertUser') }}">
+              <form method="post" action="{{ route('updateUser', $user->id) }}">
                   @csrf
                 <div class="card-body">
                   <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required autocomplete="name" autofocus id="name" placeholder="Enter name">
+                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ $user->name }}" required autocomplete="name" id="name" placeholder="Enter name">
                     @error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -27,7 +27,7 @@
                   </div>
                     <div class="form-group">
                     <label for="email">Email address</label>
-                    <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required autocomplete="email" id="email" placeholder="Enter email">
+                    <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ $user->email }}" required autocomplete="email" id="email" placeholder="Enter email">
                         @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -35,8 +35,8 @@
                         @enderror
                     </div>
                   <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="text" name="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('password') }}" required autocomplete="password" id="password" placeholder="Password">
+                    <label for="password">Password</label> <span class="text-gray">[ if you don't want to change password, leave empty. ]</span>
+                    <input type="text" name="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('password') }}" autocomplete="password" id="password" placeholder="Password">
                     @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
