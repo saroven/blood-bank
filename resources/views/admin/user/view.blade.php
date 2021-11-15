@@ -28,8 +28,8 @@
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>
-                                <a href="#" class="btn btn-primary">EDIT</a>
-                                <a href="{{ "#id=".$user->id }}" class="btn btn-danger">DELETE</a>
+                                <a href="{{ route('editUser', $user->id) }}" class="btn btn-primary">EDIT</a>
+                                <a href="{{ route('deleteUser', $user->id) }}" class="btn btn-danger">DELETE</a>
                             </td>
                         </tr>
                     @endforeach
