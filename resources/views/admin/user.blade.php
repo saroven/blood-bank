@@ -22,11 +22,11 @@
                     @foreach($users as $user)
                         <tr>
                             <td>@php echo $i; ++$i; @endphp</td>
-                            <td>@php echo $user['name'] @endphp</td>
-                            <td>@php echo $user['email'] @endphp</td>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->email }}</td>
                             <td>
                                 <a href="#" class="btn btn-primary">EDIT</a>
-                                <a id="delete" href="#" class="btn btn-danger">DELETE</a>
+                                <a href="{{ "#id=".$user->id }}" class="btn btn-danger deleteButton">DELETE</a>
                             </td>
                         </tr>
                     @endforeach
@@ -42,10 +42,8 @@
 @section('siteTitle', 'Users ')
 @section('pageTitle', 'Users ')
 @section('script')
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
-        let deleteButton = document.getElementById('delete');
-        console.log(deleteButton)
         navActive('users');
     </script>
 

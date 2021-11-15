@@ -53,3 +53,7 @@ Auth::routes();
 Route::get('/home', function (){
     return redirect('/');
 })->name('home');
+
+Route::prefix('user')->group(function (){
+    Route::get('delete', [\App\Http\Controllers\UserController::class, 'delete']);
+});
