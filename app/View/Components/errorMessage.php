@@ -4,16 +4,18 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class flashMessage extends Component
+class errorMessage extends Component
 {
+    public $message;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($message)
     {
-        //
+        $this->message = $message;
     }
 
     /**
@@ -23,6 +25,6 @@ class flashMessage extends Component
      */
     public function render()
     {
-        return view('components.flash-message');
+        return view('components.error-message');
     }
 }

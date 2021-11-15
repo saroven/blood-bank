@@ -55,5 +55,7 @@ Route::get('/home', function (){
 })->name('home');
 
 Route::prefix('user')->group(function (){
-    Route::get('delete', [\App\Http\Controllers\UserController::class, 'delete']);
+    Route::get('add', [\App\Http\Controllers\UserController::class, 'addPage'])->name('addUser');
+    Route::post('add', [\App\Http\Controllers\UserController::class, 'addUser'])->name('insertUser');
+    Route::get('delete', [\App\Http\Controllers\UserController::class, 'delete'])->name('deleteUser');
 });
