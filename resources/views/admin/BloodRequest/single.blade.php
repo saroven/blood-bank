@@ -17,30 +17,33 @@
                 <table class="table table-hover text-nowrap">
                   <thead>
                     <tr>
-                      <th>Serial No.</th>
-                      <th>Requester Name</th>
-                      <th>Blood Group</th>
-                      <th>Number of Bags</th>
-                      <th>Need Date</th>
-                      <th>District</th>
-                      <th>Action</th>
+                      <th>User Name</th>
+                        <th>Mobile Number</th>
+                        <th>Blood Group</th>
+                        <th>District</th>
+                        <th>Location</th>
+                        <th>Number of bags</th>
+                        <th>When Needed?</th>
+                        <th>Why Needed?</th>
                     </tr>
                   </thead>
                   <tbody>
-                  @php $i=1; @endphp
-                    @foreach($requests as $request)
+                      <tr>
+
+                      </tr>
                         <tr>
-                            <td>@php echo $i; ++$i; @endphp</td>
-                            <td>{{ $request->username }}</td>
-                            <td>{{ $request->blood_group }}</td>
-                            <td>{{ $request->number_of_bags }}</td>
-                            <td>{{ $request->need_date }}</td>
-                            <td>{{ $request->district_name }}</td>
-                            <td>
-                                <a href="{{ route('bloodRequest.details', $request->id) }}" class="btn btn-primary">More Details</a>
-                            </td>
+{{--                            @foreach($data as $item)--}}
+{{--                                --}}
+{{--                            @endforeach--}}
+                            <td>{{ $data->username }}</td>
+                            <td>{{ $data->mobile }}</td>
+                            <td>{{ $data->blood_group }}</td>
+                            <td>{{ $data->district_name }}</td>
+                            <td>{{ $data->location }}</td>
+                            <td>{{ $data->number_of_bags }}</td>
+                            <td>{{ $data->need_date }}</td>
+                            <td>{{ $data->comment }}</td>
                         </tr>
-                    @endforeach
                   </tbody>
                 </table>
               </div>
