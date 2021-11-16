@@ -63,4 +63,8 @@ Route::prefix('user')->group(function (){
     Route::get('edit/{id}', [\App\Http\Controllers\UserController::class, 'editPage'])->name('editUser');
     Route::post('edit/{id}', [\App\Http\Controllers\UserController::class, 'updateUser'])->name('updateUser');
     Route::get('delete/{id}', [\App\Http\Controllers\UserController::class, 'delete'])->name('deleteUser');
+
+    //those url for blood donors
+
+    Route::get('/donors', [\App\Http\Controllers\BloodDonorController::class, 'showDonors'])->name('donors');
 });

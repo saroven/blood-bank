@@ -42,28 +42,19 @@
           </li>
             <li class="nav-item">
                 <a href="{{ route('dashboard.bloodRequest') }}" class="nav-link" id="bloodRequest">
-                  <i class="nav-icon fas fa-circle"></i>
+                  <i class="nav-icon fas fa-user-clock"></i>
                   <p>
                     Blood Requests
                   </p>
                 </a>
             </li>
           <li class="nav-item">
-            <a href="#" class="nav-link" id="portfolio">
-              <i class="nav-icon fas fa-circle"></i>
+            <a href="{{ route('donors') }}" class="nav-link" id="portfolio">
+              <i class="nav-icon fas fa-syringe"></i>
               <p>
-                Portfolio
-                <i class="right fas fa-angle-left"></i>
+                Blood Donors
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ url('/') }}" class="nav-link" id="portfolio-add">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Manage</p>
-                </a>
-              </li>
-            </ul>
           </li>
         </ul>
       </nav>
