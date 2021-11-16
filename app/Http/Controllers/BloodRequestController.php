@@ -10,7 +10,6 @@ class BloodRequestController extends Controller
 {
     public function index()
     {
-        $requests = BloodRequest::all();
         $requests = \DB::table('blood_request')
             ->join('users', 'blood_request.user_id', '=', 'users.id')
             ->join('districts', 'blood_request.district_id', '=', 'districts.id')
