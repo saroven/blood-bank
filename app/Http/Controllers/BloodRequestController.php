@@ -14,7 +14,7 @@ class BloodRequestController extends Controller
         $requests = \DB::table('blood_request')
             ->join('users', 'blood_request.user_id', '=', 'users.id')
             ->join('districts', 'blood_request.district_id', '=', 'districts.id')
-            ->select('blood_request.*', 'users.name as username', 'districts.name as district_name')
+            ->select('blood_request.*', 'districts.name as district_name')
             ->get();
 
         return view('admin.BloodRequest.view', ['requests' => $requests]);

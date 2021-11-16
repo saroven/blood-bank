@@ -18,7 +18,7 @@
                   <thead>
                     <tr>
                       <th>Serial No.</th>
-                      <th>Requester Name</th>
+                      <th>Request Status</th>
                       <th>Blood Group</th>
                       <th>Number of Bags</th>
                       <th>Need Date</th>
@@ -31,10 +31,15 @@
                     @foreach($requests as $request)
                         <tr>
                             <td>@php echo $i; ++$i; @endphp</td>
-                            <td>{{ $request->username }}</td>
+                            <td> @if($request->status == 0)
+                                        <span class="badge bg-danger">Active</span>
+                                    @else
+                                        <span class="badge bg-success">Resolved</span>
+                                    @endif
+                                </td>
                             <td>{{ $request->blood_group }}</td>
                             <td>{{ $request->number_of_bags }}</td>
-                            <td>{{ $request->need_date }}</td>
+                            <td>{{ date('l, j F Y', strtotime($request->need_date)) }}</td>
                             <td>{{ $request->district_name }}</td>
                             <td>
                                 <a href="{{ route('bloodRequest.details', $request->id) }}" class="btn btn-primary">More Details</a>
