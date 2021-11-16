@@ -9,6 +9,7 @@ class BloodDonorController extends Controller
     public function showDonors()
     {
         $donors = \DB::table('users')
+            ->where('users.role_id', '!=', 2) //for hiding admin
             ->join('user_details', 'users.id', '=', 'user_details.user_id')
             ->select('users.name', 'user_details.blood_group', 'user_details.donate_status',
                 'user_details.donate_count', 'user_details.last_donate')
