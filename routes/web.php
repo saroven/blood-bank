@@ -48,6 +48,7 @@ Route::prefix('dashboard')->group(function (){
         return view('admin.home');
     })->name('dashboard');
     Route::get('blood-request', [\App\Http\Controllers\BloodRequestController::class, 'index'])->name('dashboard.bloodRequest');
+    Route::get('blood-request/{status}', [\App\Http\Controllers\BloodRequestController::class, 'filter'])->name('dashboard.filterRequest');
     Route::get('blood-request/details/{id}', [\App\Http\Controllers\BloodRequestController::class, 'details'])->name('bloodRequest.details');
 });
 
