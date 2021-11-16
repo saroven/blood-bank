@@ -28,6 +28,13 @@ class CreateBloodRequestTable extends Migration
                 ->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+            $table->foreignId('donated_by')
+                ->nullable()
+                ->constrained('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade')
+                ->nullOnDelete();
+            $table->date('donated_date')->nullable();
             $table->string('comment')->nullable();
             $table->string('status')->default(0);
             $table->timestamps();
