@@ -42,7 +42,8 @@
                             <td>{{ date('l, j F Y', strtotime($request->need_date)) }}</td>
                             <td>{{ $request->district_name }}</td>
                             <td>
-                                <a href="{{ route('bloodRequest.details', $request->id) }}" class="btn btn-primary">More Details</a>
+                                <a href="{{ route('bloodRequest.details', $request->id) }}" class="btn btn-info">Details</a>
+                                <a href="{{ route('bloodRequest.edit', $request->id) }}" class="btn btn-primary">Edit</a>
                             </td>
                         </tr>
                     @endforeach
