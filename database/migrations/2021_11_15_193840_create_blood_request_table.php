@@ -29,6 +29,7 @@ class CreateBloodRequestTable extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->string('comment')->nullable();
+            $table->string('status')->default(0);
             $table->timestamps();
         });
     }
