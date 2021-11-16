@@ -49,7 +49,7 @@
                 </a>
             </li>
           <li class="nav-item">
-            <a href="{{ route('donors') }}" class="nav-link" id="portfolio">
+            <a href="{{ route('donors') }}" class="nav-link" id="donors">
               <i class="nav-icon fas fa-syringe"></i>
               <p>
                 Blood Donors

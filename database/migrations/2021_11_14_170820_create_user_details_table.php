@@ -30,6 +30,7 @@ class CreateUserDetailsTable extends Migration
                 ->onDelete('cascade');
             $table->string('blood_group')->nullable();
             $table->boolean('donate_status')->default(false);
+            $table->tinyInteger('donate_count')->default(0);
             $table->date('last_donate')->nullable();
             $table->timestamps();
         });
