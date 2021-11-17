@@ -5,7 +5,9 @@
         @elseif(session()->has('success'))
         <x-success-message :message="session('success')" />
     @endif
-
+    @if($data->status)
+        <x-success-message m1="" message="This request has been resolved" />
+    @endif
     <div class="row">
           <div class="col-12">
             <div class="card card-primary">
