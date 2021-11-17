@@ -28,7 +28,7 @@
                       <select name="donated_by" id="donated_by" class="form-control @error('donated_by') is-invalid @enderror" required id="donated_by">
                               <option value="">Select Donor Name</option>
                           @foreach($users as $user)
-                              <option value="{{ $user->id }}" @if($user->name == old('donated_by')) selected @endif>{{ $user->name }}</option>
+                              <option value="{{ $user->id }}" @if($user->name == $donated_by) selected @endif>{{ $user->name }}</option>
                           @endforeach
                       </select>
                     @error('donated_by')
@@ -39,7 +39,7 @@
                   </div>
                     <div class="form-group">
                         <label for="donated_date">Donate Date</label>
-                        <input type="date" name="donated_date" class="form-control @error('donated_date') is-invalid @enderror" value="{{ old('donated_date') }}" required autocomplete="donated_date">
+                        <input type="date" name="donated_date" class="form-control @error('donated_date') is-invalid @enderror" value="{{ old('donated_date') ?? $data->donated_date }}" required autocomplete="donated_date">
                         @error('donated_date')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

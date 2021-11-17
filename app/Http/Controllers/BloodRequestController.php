@@ -59,6 +59,11 @@ class BloodRequestController extends Controller
     public function edit(Request $request)
     {
         $data = \DB::table('blood_request')->where('id', $request->id)->first();
+        $donated_by = null;
+        if ($data->donated_by) {
+            $donated_user = \DB::table('users')->where('id', $data->donated_by)->first();
+            $donated_by = $donated_user->name;
+        }
         $requested_user = \DB::table('users')->where('id', $data->user_id)->first();
         if (!$data){
             return redirect()->route('dashboard');
@@ -67,7 +72,7 @@ class BloodRequestController extends Controller
                 ->where('id', '!=', $data->user_id)
                 ->select('id', 'name')
                 ->get();
-            return view('admin.BloodRequest.edit', ['data' => $data, 'users' => $users, 'requested_by' => $requested_user->name]);
+            return view('admin.BloodRequest.edit', ['data' => $data, 'users' => $users, 'requested_by' => $requested_user->name, 'donated_by' => $donated_by]);
         }
     }
 
