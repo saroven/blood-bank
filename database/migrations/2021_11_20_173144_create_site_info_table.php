@@ -14,6 +14,7 @@ class CreateSiteInfoTable extends Migration
     public function up()
     {
         Schema::create('site_info', function (Blueprint $table) {
+            $table->id();
             $table->string('site_title')->nullable();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
