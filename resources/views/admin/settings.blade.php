@@ -8,7 +8,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form method="post" action="{{ route('setting.update') }}">
+              <form method="post" action="{{ route('setting.update') }}" enctype="multipart/form-data">
                   @csrf
                 <div class="card-body">
                   <div class="form-group">
