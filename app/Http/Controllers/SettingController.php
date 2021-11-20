@@ -8,15 +8,37 @@ class SettingController extends Controller
 {
     public function index()
     {
-        return view('admin.settings');
+        $siteInfo = \DB::table('site_info')->first();
+        return view('admin.settings', ['siteInfo' => $siteInfo]);
     }
     public function update(Request $request)
     {
         $siteInfo = \DB::table('site_info')->first();
-//        return $request;
         if($siteInfo){
             //have data
 
+            $request->validate([
+                'site_title' => 'sometimes|required|string|min:2|max:50',
+                'email' => 'sometimes|required|email|max:255',
+                'phone' => 'sometimes|required|string|max:11',
+                'address' => 'sometimes|required|string|max:255',
+                'logo' => 'sometimes|required|file|mimes:jpg,png,jpeg,gif',
+            ]);
+            $fileName = time().'_logo.'.$request->logo->getClientOriginalExtension();
+            $filePath = $request->file('logo')->storeAs(
+                'logo',
+                $fileName
+            );
+            \DB::table('site_info')
+                ->where('id', 1) //update first row
+                ->update([
+                    'site_title' => $request->site_title,
+                    'phone' => $request->phone,
+                    'email' => $request->email,
+                    'address' => $request->address,
+                    'logo' => '/storage/'.$filePath
+                ]);
+            return redirect()->back()->with('success', 'Updated successful');
         }else{
             //don't have data
             $request->validate([
@@ -34,7 +56,7 @@ class SettingController extends Controller
                     'address' => $request->address,
                     'logo' => $request->logo
                 ]);
-            return 'all ok';
+            return redirect()->back()->with('success', 'Inserted successful');
         }
     }
 }
