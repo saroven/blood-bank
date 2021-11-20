@@ -38,7 +38,7 @@
                                     @endif
                                 </td>
                             <td>{{ $donor->donate_count }}</td>
-                            <td>@if($donor->last_donate) {{ date('l, j F Y', strtotime($donor->last_donate)) }} @else {{ "Not Donated yet" }} @endif</td>
+                            <td>@if($donor->last_donate) {{ date('l, j F Y', strtotime($donor->last_donate)) }} @else {{ "No data found" }} @endif</td>
                         </tr>
                     @endforeach
                   </tbody>
