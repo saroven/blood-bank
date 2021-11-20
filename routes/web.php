@@ -40,6 +40,7 @@ Route::name('public.')->group(function (){
 
 Route::prefix('dashboard')->group(function (){
     Route::get('/setting', [\App\Http\Controllers\SettingController::class, 'index'])->name('setting');
+    Route::post('/setting', [\App\Http\Controllers\SettingController::class, 'update'])->name('setting.update');
 
     Route::resource('category', categoryController::class);
 

@@ -10,4 +10,8 @@ class SettingController extends Controller
     {
         return view('admin.settings');
     }
+    public function update(Request $request)
+    {
+        return $request;
+    }
 }
