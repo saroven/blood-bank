@@ -51,6 +51,7 @@ Route::prefix('dashboard')->group(function (){
     Route::get('blood-request/{status}', [\App\Http\Controllers\BloodRequestController::class, 'filter'])->name('dashboard.filterRequest');
     Route::get('blood-request/edit/{id}', [\App\Http\Controllers\BloodRequestController::class, 'edit'])->name('bloodRequest.edit');
     Route::post('blood-request/edit/{id}', [\App\Http\Controllers\BloodRequestController::class, 'update'])->name('bloodRequest.update');
+    Route::put('blood-request/edit/{id}', [\App\Http\Controllers\BloodRequestController::class, 'clear'])->name('bloodRequest.clear');
     Route::get('blood-request/details/{id}', [\App\Http\Controllers\BloodRequestController::class, 'details'])->name('bloodRequest.details');
 });
 

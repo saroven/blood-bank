@@ -53,9 +53,19 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Update</button>
                 </div>
               </form>
+                <div class="card-footer">
+                @if($data->status)
+                        <form action="{{ route('bloodRequest.clear', $data->id) }}" method="post">
+                            @method('put')
+                            @csrf
+                            <input type="hidden" name="donated_by" value="{{ $data->donated_by }}">
+                            <button type="submit" class="btn btn-danger">Clear Information</button>
+                        </form>
+                    @endif
+                </div>
             </div>
             <!-- /.card -->
           </div>

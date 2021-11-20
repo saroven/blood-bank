@@ -109,4 +109,40 @@ class BloodRequestController extends Controller
             return redirect()->back()->with('error', 'Something went wrong!');
         }
     }
+
+    public function clear(Request $request)
+    {
+        try {
+            $blood_request = \DB::table('blood_request')
+            ->where('id', $request->id)
+            ->first();
+        //getting donor details
+        $donor = \DB::table('user_details')
+            ->where('user_id', $blood_request->donated_by)
+            ->select('user_id', 'donate_count')
+            ->first();
+        if ($donor){
+            //update user details table
+            \DB::table('user_details')
+                ->where('user_id',$donor->user_id)
+                ->update([
+                    'donate_count' => $donor->donate_count - 1,
+                    'last_donate' => null
+                ]);
+            //update blood request table
+            \DB::table('blood_request')
+                ->where('id', $request->id)
+                ->update([
+                    'status' => 0,
+                    'donated_by' => null,
+                    'donated_date' => null
+                ]);
+            return redirect()->back()->with('success', 'Data cleared');
+        }else{
+            return redirect()->back()->with('error', 'Something went wrong!');
+        }
+        }catch (\Exception $e){
+            return redirect()->back()->with('error', 'Something went wrong!');
+        }
+    }
 }
