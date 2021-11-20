@@ -39,6 +39,7 @@ Route::name('public.')->group(function (){
 });
 
 Route::prefix('dashboard')->group(function (){
+    Route::get('/setting', [\App\Http\Controllers\SettingController::class, 'index'])->name('setting');
 
     Route::resource('category', categoryController::class);
 

@@ -56,6 +56,15 @@
               </p>
             </a>
           </li>
+            <li class="nav-header">Setting & Customization</li>
+            <li class="nav-item">
+            <a href="{{ route('setting') }}" class="nav-link" id="setting">
+              <i class="nav-icon fas fa-cog"></i>
+              <p>
+               Settings
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

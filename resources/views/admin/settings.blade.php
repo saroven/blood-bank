@@ -14,6 +14,6 @@
 
 @section('script')
     <script>
-        navActive('settings')
+        navActive('setting')
     </script>
 @endsection
