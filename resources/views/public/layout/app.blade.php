@@ -103,7 +103,7 @@
                     </li>
                   @else
                       <li>
-                        <a class="btn btn-sm btn-primary login-btn login" href="#">Profile</a>
+                        <a class="btn btn-sm btn-primary login-btn login" href="{{ route('public.profile')  }}">Profile</a>
                       </li>
                       <li>
                           <form action="{{ route('logout') }}" method="post">

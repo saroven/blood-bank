@@ -3,10 +3,16 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\categoryController;
 
+//Route::get('/', function () {
+//        return view('index');
+//    })->name('home');
 Route::name('public.')->group(function (){
     Route::get('/', function () {
         return view('index');
     })->name('home');
+    Route::get('/profile', function () {
+        return 'profile';
+    })->name('profile');
     Route::get('/volunteer', function () {
         return view('public.volunteer');
     })->name('volunteer');
@@ -47,7 +53,7 @@ Route::prefix('dashboard')->group(function (){
 
         Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users');
 
-        Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+        Route::get('/', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
         Route::get('blood-request', [\App\Http\Controllers\BloodRequestController::class, 'index'])->name('dashboard.bloodRequest');
         Route::get('blood-request/{status}', [\App\Http\Controllers\BloodRequestController::class, 'filter'])->name('dashboard.filterRequest');
         Route::get('blood-request/edit/{id}', [\App\Http\Controllers\BloodRequestController::class, 'edit'])->name('bloodRequest.edit');

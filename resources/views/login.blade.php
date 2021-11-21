@@ -20,7 +20,7 @@
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="{{ route('home') }}" class="h1"><b>{{ __('Login Page') }}</b></a>
+      <a href="{{ route('public.home') }}" class="h1"><b>{{ __('Login Page') }}</b></a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Sign in to start your session</p>
