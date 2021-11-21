@@ -84,30 +84,34 @@
                     ><i class="fa fa-envelope d-md-none"></i> Contact
                   </a>
                 </li>
-                  <?php
-                  if (!Auth::check()){
-                   ?>
-                  <li>
-                  <a class="btn btn-sm btn-primary login-btn login" href="{{ route('login') }}">Login</a>
-                </li>
-                  <li>
-                      <a class="btn btn-sm btn-danger login-btn" href="{{ route('logout') }}">Register</a>
-                  </li>
-                  <?php
-                    }else{
-                  ?>
-                  <li>
-                  <a class="btn btn-sm btn-primary login-btn login" href="#">Profile</a>
-                </li>
-                  <li>
-                      <form action="{{ route('logout') }}" method="post">
-                          @csrf
-                          <button class="btn btn-danger login-btn">Logout</button>
-                      </form>
-                </li>
-                  <?php
-                   }
-                   ?>
+                  @if(!Auth::check())
+                      <li>
+                      <a class="btn btn-sm btn-primary login-btn login" href="{{ route('login') }}">Login</a>
+                    </li>
+                      <li>
+                          <a class="btn btn-sm btn-danger login-btn" href="{{ route('logout') }}">Register</a>
+                      </li>
+                  @elseif(Auth::user()->role_id == 2)
+                      <li>
+                          <a class="btn btn-sm btn-success login-btn login" href="{{ route('dashboard') }}">Dashboard</a>
+                      </li>
+                      <li>
+                          <form action="{{ route('logout') }}" method="post">
+                              @csrf
+                              <button class="btn btn-danger login-btn">Logout</button>
+                          </form>
+                    </li>
+                  @else
+                      <li>
+                        <a class="btn btn-sm btn-primary login-btn login" href="#">Profile</a>
+                      </li>
+                      <li>
+                          <form action="{{ route('logout') }}" method="post">
+                              @csrf
+                              <button class="btn btn-danger login-btn">Logout</button>
+                          </form>
+                    </li>
+                  @endif
                   <style>
                       .login-btn{
                           color: white !important;
