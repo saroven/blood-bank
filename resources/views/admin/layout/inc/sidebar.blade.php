@@ -1,8 +1,13 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
+      @php
+        $siteInformation = DB::table('site_info')
+                            ->select('site_title', 'logo', 'phone', 'address')
+                            ->first();
+      @endphp
     <a href="#" class="brand-link">
-      <img src="{{ asset('admin/assets/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <img src="{{ asset($siteInformation->logo) }}" alt="{{ $siteInformation->site_title }} Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">{{ $siteInformation->site_title ?? "Blood Donation" }}</span>
     </a>
 
     <!-- Sidebar -->
