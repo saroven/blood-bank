@@ -4,7 +4,7 @@
         <div class="col-lg-3 col-6">
               <div class="small-box bg-info">
                   <div class="inner">
-                    <h3>{{ sizeof(\App\Models\User::all()) }}</h3>
+                    <h3>{{ sizeof($data['users']) }}</h3>
                     <p>Registered User</p>
                   </div>
                   <div class="icon">
@@ -16,7 +16,7 @@
         <div class="col-lg-3 col-6">
               <div class="small-box bg-danger">
                   <div class="inner">
-                    <h3>{{ sizeof(\App\Models\BloodRequest::where('status', 0)->get()) }}</h3>
+                    <h3>{{ sizeof($data['activeRequest']) }}</h3>
                     <p>Active Blood Request</p>
                   </div>
                   <div class="icon">
@@ -28,7 +28,7 @@
         <div class="col-lg-3 col-6">
               <div class="small-box bg-success">
                   <div class="inner">
-                    <h3>{{ sizeof(\App\Models\BloodRequest::where('status', 0)->get()) }}</h3>
+                    <h3>{{ sizeof($data['resolveRequest']) }}</h3>
                     <p>Resolved Blood Request</p>
                   </div>
                   <div class="icon">
