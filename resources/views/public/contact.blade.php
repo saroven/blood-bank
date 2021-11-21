@@ -3,16 +3,14 @@
     <div class="single" style="margin-top: 150px;">
         <div class="col-sm-12">
             <div class="mt-2" style="width: 100%">
-
-
-    <div class="alert alert-success alert-dismissible fade show" role="alert" style="display: none">
+                <div class="alert alert-success alert-dismissible fade show" role="alert" style="display: none">
         <span class="alert-success-message"></span>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-
-</div>        </div>
+            </div>
+        </div>
         <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center">
             <h4>মতামত/ পরামর্শ / অভিযোগ  / কোনো কিছু জানতে  লিখুন </h4><br>
             <form method="POST" action="https://roktobangla.org/contact" accept-charset="UTF-8" id="regiForm" novalidate=""><input name="_token" type="hidden" value="CrxOQ70ErMARFEc4aXO0y5bjT5Y7lWWtWyKEf0Ig">
@@ -39,5 +37,5 @@
             <h6 class="text-center" style="margin-bottom: 15px;"><a href="https://facebook.com/emedical.com.bd"><img src="../res.cloudinary.com/emedical/image/upload/v1595473222/assets/messenger_hxwz2v.png" style="width: 20px;"></a> তাৎক্ষণিক সাহায্য পেতে <a href="https://facebook.com/emedical.com.bd">ফেসবুক  পেইজে ( fb.com/emedical.com.bd) </a>
                 যোগাযোগ করুন <a href="https://facebook.com/emedical.com.bd"><img src="../res.cloudinary.com/emedical/image/upload/v1595473222/assets/messenger_hxwz2v.png" style="width: 20px;"></a> </h6>
         </div>
-            </div>
+    </div>
 @endsection

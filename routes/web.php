@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\categoryController;
-
+use App\Http\Controllers\HomeController;
 //Route::get('/', function () {
 //        return view('index');
 //    })->name('home');
@@ -10,9 +10,13 @@ Route::name('public.')->group(function (){
     Route::get('/', function () {
         return view('index');
     })->name('home');
-    Route::get('/profile', function () {
-        return 'profile';
-    })->name('profile');
+
+    Route::get('/profile', [HomeController::class, 'showProfilePage'])
+        ->name('profile')->middleware(['auth']);
+
+    Route::post('/profile', [HomeController::class, 'updateProfile'])
+        ->name('profile.update')->middleware(['auth']); //update profile
+
     Route::get('/volunteer', function () {
         return view('public.volunteer');
     })->name('volunteer');
