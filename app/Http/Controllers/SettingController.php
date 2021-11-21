@@ -18,17 +18,30 @@ class SettingController extends Controller
             //have data
 
             $request->validate([
-                'site_title' => 'sometimes|required|string|min:2|max:50',
-                'email' => 'sometimes|required|email|max:255',
-                'phone' => 'sometimes|required|string|max:11',
-                'address' => 'sometimes|required|string|max:255',
-                'logo' => 'sometimes|required|file|mimes:jpg,png,jpeg,gif',
+                'site_title' => 'required|string|min:2|max:50',
+                'email' => 'required|email|max:255',
+                'phone' => 'required|string|max:11',
+                'address' => 'required|string|max:255',
+                'logo' => 'required|image|mimes:jpg,png,jpeg,gif',
             ]);
-            $fileName = time().'_logo.'.$request->logo->getClientOriginalExtension();
-            $filePath = $request->file('logo')->storeAs(
-                'logo',
-                $fileName
-            );
+
+//            $filePath = $request->file('logo')->storeAs(
+//                'logo',
+//                $fileName,
+//                'public'
+//            );
+            $oldImage = public_path('logo'). ''.$siteInfo->logo;
+
+//            if (\File::exists($siteInfo->logo)){
+//                return 'has file';
+//            }else{
+//                return 'no file';
+//            }
+            if ($request->logo != null){
+                $fileName = time().'_logo.'.$request->logo->getClientOriginalExtension();
+                $request->logo->move(public_path('logo'), $fileName);
+            }
+
             \DB::table('site_info')
                 ->where('id', 1) //update first row
                 ->update([
@@ -36,7 +49,7 @@ class SettingController extends Controller
                     'phone' => $request->phone,
                     'email' => $request->email,
                     'address' => $request->address,
-                    'logo' => '/storage/'.$filePath
+                    'logo' => '/logo/'.$fileName
                 ]);
             return redirect()->back()->with('success', 'Updated successful');
         }else{

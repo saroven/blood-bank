@@ -2,9 +2,9 @@
 @section('mainContent')
     @if(session()->has('error'))
             <x-error-message :message="session('error')" />
-            @elseif(session()->has('success'))
+    @elseif(session()->has('success'))
             <x-success-message :message="session('success')" />
-        @endif
+    @endif
    <div class="row">
           <div class="col-12">
             <div class="card card-primary">
@@ -55,22 +55,17 @@
                   <div class="form-group">
                     <label for="logo">Site Logo</label> <br>
                       @php($logo = $siteInfo->logo ?? null)
-                      @if($logo) <img src="{{ asset($siteInfo->logo) }}" alt="site_logo"> @endif
+                      @if($logo) <img src="{{ asset($siteInfo->logo) }}" height="120px" width="250px" alt="site_logo"> @endif
                       <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" name="logo" class="custom-file-input @error('logo') is-invalid @enderror" id="logo ">
-                        <label class="custom-file-label" for="fileInput">Choose file</label>
-                      </div>
-                      <div class="input-group-append">
-                        <span class="input-group-text">Upload</span>
-                      </div>
+                          <div class="custom-file">
+                            <input type="file" name="logo" class="custom-file-input @error('logo') is-invalid @enderror" id="logo ">
+                            <label class="custom-file-label" for="fileInput">Choose file</label>
+                          </div>
                     </div>
-                      @error('logo')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                      @enderror
                     </div>
+                          @error('logo')
+                          <span class="text-danger" style="font-weight: bolder; font-size: 80%"><strong>{{$errors->first('logo')}}</strong> </span>
+                          @enderror
                 </div>
                 <!-- /.card-body -->
 
