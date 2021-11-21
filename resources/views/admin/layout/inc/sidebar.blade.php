@@ -5,7 +5,7 @@
                             ->select('site_title', 'logo', 'phone', 'address')
                             ->first();
       @endphp
-    <a href="#" class="brand-link">
+    <a href="/" class="brand-link">
       <img src="{{ asset($siteInformation->logo) }}" alt="{{ $siteInformation->site_title }} Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">{{ $siteInformation->site_title ?? "Blood Donation" }}</span>
     </a>
