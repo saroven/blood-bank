@@ -8,6 +8,10 @@ use mysql_xdevapi\Exception;
 
 class HomeController extends Controller
 {
+    public function index()
+    {
+        return view('public.index');
+    }
     public function showProfilePage()
     {
         $districts = \DB::table('districts')->select('id', 'name')->get();

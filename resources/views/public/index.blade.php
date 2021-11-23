@@ -39,15 +39,15 @@
                       </div>
                       <div class="room-selector search-blood">
                         <select class="form-control" name="blood_group">
-                          <option value="">All Blood Group</option>
-                          <option value="1">A+</option>
-                          <option value="3">A-</option>
-                          <option value="4">B+</option>
-                          <option value="5">B-</option>
-                          <option value="6">AB+</option>
-                          <option value="7">AB-</option>
-                          <option value="8">O+</option>
-                          <option value="9">O-</option>
+                          <option value="">Select Blood Group</option>
+                          <option value="A+" >A+</option>
+                          <option value="A-" >A-</option>
+                          <option value="B+" >B+</option>
+                          <option value="B-" >B-</option>
+                          <option value="AB+">AB+</option>
+                          <option value="AB-">AB-</option>
+                          <option value="O+" >O+</option>
+                          <option value="O-" >O-</option>
                         </select>
                       </div>
                       <div class="room-selector search-btn">

@@ -7,9 +7,7 @@ use App\Http\Controllers\HomeController;
 //        return view('index');
 //    })->name('home');
 Route::name('public.')->group(function (){
-    Route::get('/', function () {
-        return view('index');
-    })->name('home');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
 
     Route::get('/profile', [HomeController::class, 'showProfilePage'])
         ->name('profile')->middleware(['auth']);
