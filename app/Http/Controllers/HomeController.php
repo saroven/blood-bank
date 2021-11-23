@@ -10,7 +10,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('public.index');
+        $districts = DB::table('districts')->get();
+        return view('public.index', ['districts' => $districts]);
     }
     public function showProfilePage()
     {

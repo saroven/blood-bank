@@ -32,9 +32,10 @@
                       <input type="hidden" name="area" class="areaSlug" />
                       <div class="room-selector search-area">
                          <select class="form-control" name="blood_group">
-                          <option value="">Location</option>
-                          <option value="1">Dhaka</option>
-                          <option value="3">Chittagong</option>
+                          <option value="">Select Location</option>
+                             @foreach($districts as $district)
+                                 <option value="{{ $district->id }}">{{ $district->name }}</option>
+                             @endforeach
                         </select>
                       </div>
                       <div class="room-selector search-blood">
