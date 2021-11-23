@@ -13,6 +13,16 @@ class HomeController extends Controller
         $districts = DB::table('districts')->get();
         return view('public.index', ['districts' => $districts]);
     }
+
+    public function findDonors(Request $request)
+    {
+        $request->validate([
+            'district' => 'required|integer|min:0',
+            'blood_group' => 'required|string|min:0|max:5'
+        ]);
+
+        return view('public.blood-donors');
+    }
     public function showProfilePage()
     {
         $districts = \DB::table('districts')->select('id', 'name')->get();
@@ -57,7 +67,5 @@ class HomeController extends Controller
             \Log::error($exception);
             return redirect()->back()->with('error', 'Something went wrong!');
         }
-
-
     }
 }

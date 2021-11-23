@@ -15,9 +15,12 @@ Route::name('public.')->group(function (){
     Route::post('/profile', [HomeController::class, 'updateProfile'])
         ->name('profile.update')->middleware(['auth']); //update profile
 
+    Route::get('/blood-donor', [HomeController::class,'findDonors'])->name('findDonors');
+
     Route::get('/volunteer', function () {
         return view('public.volunteer');
     })->name('volunteer');
+
     Route::get('/blood-request', function (){
         return view('public.blood-seeking-requests');
     })->name('bloodRequest');

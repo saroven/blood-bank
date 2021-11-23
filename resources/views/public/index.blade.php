@@ -29,9 +29,8 @@
                       action="/blood-donor"
                       class="check-form" method="get"
                     >
-                      <input type="hidden" name="area" class="areaSlug" />
                       <div class="room-selector search-area">
-                         <select class="form-control" name="blood_group">
+                         <select class="form-control" name="district">
                           <option value="">Select Location</option>
                              @foreach($districts as $district)
                                  <option value="{{ $district->id }}">{{ $district->name }}</option>
