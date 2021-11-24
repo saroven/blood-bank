@@ -63,7 +63,11 @@
                                                             <small>Amount: {{ $data->number_of_bags.' bag' }}</small><br>
                                                             <small>Need Date: {{ $data->need_date }}</small><br>
                                                             <span>Status:
-                                                                <span class="badge badge-warning">Waiting for Donor</span>
+                                                                @if($data->status == '0')
+                                                                    <span class="badge badge-warning">Waiting for Donor</span>
+                                                                @else
+                                                                    <span class="badge badge-success">Donated</span>
+                                                                @endif
                                                             </span>
                                                         </div>
                                                         <div class="text">

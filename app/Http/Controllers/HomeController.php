@@ -86,7 +86,7 @@ class HomeController extends Controller
             ->where('blood_request.status', '=', 0)
             ->join('users', 'blood_request.user_id', '=', 'users.id')
             ->join('districts', 'blood_request.district_id', '=', 'districts.id')
-            ->select('blood_request.id as request_id', 'blood_request.blood_group', 'blood_request.number_of_bags', 'blood_request.need_date', 'blood_request.mobile', 'blood_request.location', 'blood_request.comment', 'blood_request.created_at as request_date', 'districts.name as district_name', 'users.name as requester_name')
+            ->select('blood_request.id as request_id', 'blood_request.blood_group', 'blood_request.number_of_bags', 'blood_request.need_date', 'blood_request.mobile', 'blood_request.location', 'blood_request.comment', 'blood_request.created_at as request_date', 'districts.name as district_name', 'users.name as requester_name', 'blood_request.status')
             ->get();
         return view('public.blood-seeking-requests', ['requests' => $requests, 'districts' => $districts]);
     }
@@ -179,7 +179,7 @@ class HomeController extends Controller
                 ->where('users.id', '=', auth()->user()->id)
                 ->join('users', 'blood_request.user_id', '=', 'users.id')
                 ->join('districts', 'blood_request.district_id', '=', 'districts.id')
-                ->select('blood_request.id as request_id', 'blood_request.blood_group', 'blood_request.number_of_bags', 'blood_request.need_date', 'blood_request.mobile', 'blood_request.location', 'blood_request.comment', 'blood_request.created_at as request_date', 'districts.name as district_name', 'users.name as requester_name')
+                ->select('blood_request.id as request_id', 'blood_request.blood_group', 'blood_request.number_of_bags', 'blood_request.need_date', 'blood_request.mobile', 'blood_request.location', 'blood_request.comment', 'blood_request.created_at as request_date', 'districts.name as district_name', 'users.name as requester_name', 'blood_request.status')
                 ->get();
             return view('public.blood-seeking-requests', ['requests' => $requests, 'districts' => $districts]);
         }else{
