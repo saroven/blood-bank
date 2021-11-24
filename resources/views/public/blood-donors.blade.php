@@ -4,18 +4,46 @@
         <div class="single" style="margin-top: 150px">
         <div class="container">
             <div class="row">
+                                 <div class="col-sm-12">
+                    <form
+                      action="/blood-donor"
+                      class="check-form" method="get"
+                    >
+                      <div class="room-selector search-area">
+                         <select class="form-control" name="district">
+                          <option value="">Select Location</option>
+                             @foreach($districts as $district)
+                                 <option @if($oldDistrict == $district->id) selected @endif value="{{ $district->id }}">{{ $district->name }}</option>
+                             @endforeach
+                        </select>
+                      </div>
+                      <div class="room-selector search-blood">
+                        <select class="form-control" name="blood_group">
+                          <option value="">Select Blood Group</option>
+                          <option value="A+" @if($oldBlood_group == 'A+') selected @endif >A+</option>
+                          <option value="A-" @if($oldBlood_group == 'A-') selected @endif >A-</option>
+                          <option value="B+" @if($oldBlood_group == 'B+') selected @endif >B+</option>
+                          <option value="B-" @if($oldBlood_group == 'B-') selected @endif >B-</option>
+                          <option value="AB+" @if($oldBlood_group == 'AB+') selected @endif >AB+</option>
+                          <option value="AB-" @if($oldBlood_group == 'AB-') selected @endif >AB-</option>
+                          <option value="O+" @if($oldBlood_group == 'O+') selected @endif >O+</option>
+                          <option value="O-" @if($oldBlood_group == 'O-') selected @endif >O-</option>
+                        </select>
+                      </div>
+                      <div class="room-selector search-btn">
+                        <button
+                          type="submit"
+                          class="primary-btn"
+                          title="Find Now"
+                        >
+                          <i class="fa fa-search"></i>
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+
                 <div class="col-sm-12 text-center mb-4">
-                    <h5>List of all volunteer</h5>
-                    <div class="new-organisation">
-                        <form action="/volunteer" method="get">
-                            @csrf
-                            <button type="submit" class="btn btn-outline-danger pull-right">Filter</button>
-                            <select class="form-control col-sm-3 mt-sm-10" id="areaFilter">
-                                <option value="0">Area wise volunteer</option>
-                                    <option value="115">Araihazar (আড়াইহাজার)</option>
-                             </select>
-                        </form>
-                    </div>
+                    <h5>List Donors</h5>
                 </div>
             </div>
              <div class="row">
@@ -31,7 +59,7 @@
                                                 $datediff = $now - $your_date;
                                                 $totalTime = round($datediff / (60 * 60 * 24));
                                             @endphp
-                                            @if($totalTime > '90')
+                                            @if($totalTime < '90')
                                                 @continue
                                             @endif
                                             <div class="col-sm-4">
@@ -41,7 +69,12 @@
                                                         </h5>
                                                         <div class="title">
                                                             <h5>{{ $data->name }}</h5>
-                                                            <i class="fa fa-phone"></i><a href="#" title="নাম্বার দেখতে দয়া করে লগইন করুন">+880XXXXXXXXXX</a> <br>
+                                                            <i class="fa fa-phone"></i>
+                                                            @if(Auth::check())
+                                                                <a href="#">+880{{ $data->mobile }}</a> <br>
+                                                            @else
+                                                                <a href="#" title="To check number please login">+880XXXXXXXXXX</a> <br>
+                                                            @endif
                                                             <small>Place: {{ $data->district_name }}</small> <br>
                                                             <small>Last Donate: {{ $data->last_donate }}</small> <br>
                                                             <span>Status:

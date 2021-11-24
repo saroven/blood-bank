@@ -16,6 +16,7 @@ class HomeController extends Controller
 
     public function findDonors(Request $request)
     {
+        $districts = DB::table('districts')->get();
         $request->validate([
             'district' => 'required|integer|min:0',
             'blood_group' => 'required|string|min:0|max:5'
@@ -25,12 +26,11 @@ class HomeController extends Controller
             ->where('user_details.blood_group', $request->blood_group)
             ->join('user_details', 'users.id', '=', 'user_details.user_id')
             ->join('districts', 'user_details.district_id', '=', 'districts.id')
-            ->select('users.name', 'user_details.blood_group', 'user_details.last_donate',
+            ->select('users.name', 'user_details.blood_group', 'user_details.mobile', 'user_details.last_donate',
              'user_details.donate_status', 'districts.name as district_name')
             ->get();
 
-
-        return view('public.blood-donors', ['searchData' => $searchData]);
+        return view('public.blood-donors', ['searchData' => $searchData, 'districts' => $districts, 'oldDistrict' => $request->district, 'oldBlood_group' => $request->blood_group]);
     }
     public function showProfilePage()
     {
