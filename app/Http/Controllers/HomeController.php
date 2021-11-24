@@ -81,13 +81,14 @@ class HomeController extends Controller
 
     public function showBloodRequest()
     {
+        $districts = DB::table('districts')->select('id', 'name')->get();
         $requests = DB::table('blood_request')
             ->where('blood_request.status', '=', 0)
             ->join('users', 'blood_request.user_id', '=', 'users.id')
             ->join('districts', 'blood_request.district_id', '=', 'districts.id')
             ->select('blood_request.id as request_id', 'blood_request.blood_group', 'blood_request.number_of_bags', 'blood_request.need_date', 'blood_request.mobile', 'blood_request.location', 'blood_request.comment', 'blood_request.created_at as request_date', 'districts.name as district_name', 'users.name as requester_name')
             ->get();
-        return view('public.blood-seeking-requests', ['requests' => $requests]);
+        return view('public.blood-seeking-requests', ['requests' => $requests, 'districts' => $districts]);
     }
 
     public function donateBlood(Request $request)
@@ -139,6 +140,34 @@ class HomeController extends Controller
              'user_details.donate_status', 'user_details.donate_status', 'districts.name as district_name')
             ->get();
         return view('public.volunteer', ['volunteers' => $volunteers, 'districts' => $districts, 'old' => $request->district]);
+    }
+
+    public function addBloodRequest(Request $request)
+    {
+        $request->validate([
+            'blood_group' => 'required|string|min:0|max:10',
+            'number_of_bag' => 'required|integer|max:10|min:0',
+            'need_date' => 'required|date',
+            'district' => 'required|integer',
+            'comment' => 'required|string|max:1000',
+            'mobile' => 'required|string|min:10|max:11'
+        ]);
+        if (Auth::check()){
+            DB::table('blood_request')
+                ->insert([
+                    'user_id' => Auth::user()->id,
+                    'blood_group' => $request->blood_group,
+                    'number_of_bags' => $request->number_of_bag,
+                    'need_date' => $request->need_date,
+                    'district_id' => $request->district,
+                    'comment' => $request->comment,
+                    'mobile' => $request->mobile
+                ]);
+            return redirect()->back()->with('success', 'Request added successful');
+        }else{
+            return redirect()->back()->with('error', 'Something went wrong!');
+        }
+        return $request;
     }
 
 }

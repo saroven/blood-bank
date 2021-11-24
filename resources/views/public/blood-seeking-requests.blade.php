@@ -6,7 +6,7 @@
                             <div class="col-sm-12 text-center mb-4">
                                 <h5>All blood requests</h5>
                                 <div class="new-organisation">
-                                    <button class="btn btn-outline-danger pull-right" data-toggle="modal" data-target="#modal" onclick="loadModal('blood-seeking-post.html')">রক্তের জন্য রিকোয়েস্ট করুন</button>
+                                    <button class="btn btn-outline-danger pull-right" data-toggle="modal" data-target="#addRequestModal">Request For Blood</button>
                                 </div>
                             </div>
                             <div class="col-12">
@@ -28,6 +28,16 @@
             @elseif(session()->has('success'))
                 <x-success-message :message="session('success')" />
             @endif
+                   @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                 </div>
                         </div>
                         <div class="row">
@@ -73,4 +83,68 @@
                         </div>
                     </div>
                 </div>
+        <div class="modal fade" id="addRequestModal" tabindex="-1" role="dialog" aria-labelledby="addRequestModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addRequestModalLabel">Add Blood Request</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                    <form action="{{ route('public.AddBloodRequest') }}" method="post">
+                        @csrf
+                      <div class="modal-body">
+                          <div class="form-group">
+                              <label for="mobile">Mobile:</label>
+                              <input type="tel" name="mobile" class="form-control" placeholder="Mobile" required>
+                          </div>
+                          <div class="form-group">
+                              <label for="blood_group"><strong>Blood Group:</strong></label>
+                              <select class="form-control" name="blood_group" required>
+                                  <option value="">Select Blood Group</option>
+                                  <option value="A+" >A+</option>
+                                  <option value="A-" >A-</option>
+                                  <option value="B+" >B+</option>
+                                  <option value="B-" >B-</option>
+                                  <option value="AB+">AB+</option>
+                                  <option value="AB-">AB-</option>
+                                  <option value="O+" >O+</option>
+                                  <option value="O-" >O-</option>
+                              </select>
+                          </div>
+                          <div class="form-group">
+                              <label for="number_of_bag"><strong>Number of bag:</strong></label>
+                              <input type="number" class="form-control" name="number_of_bag" placeholder="Number of bag">
+                          </div>
+                          <div class="form-group">
+                              <label for="requestDate"><strong>Request Date:</strong></label>
+                              <input type="date" class="form-control" name="need_date">
+                          </div>
+                          <div class="form-group">
+                              <label for="district"><strong>District:</strong></label>
+                              <select name="district" class="form-control">
+                                  <option value="">Select District</option>
+                                  @foreach($districts as $district)
+                                    <option value="{{ $district->id }}">{{ $district->name }}</option>
+                                  @endforeach
+                              </select>
+                          </div>
+                          <div class="form-group">
+                              <label for="Location">Location</label>
+                              <input type="text" placeholder="Location" name="location" class="form-control" required>
+                          </div>
+                          <div class="form-group">
+                              <label for="comment"><strong>Reason for need blood:</strong></label>
+                              <textarea class="form-control" name="comment" cols="15" rows="2" placeholder="Why need blood??"></textarea>
+                          </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     @endsection

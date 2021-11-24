@@ -36,7 +36,7 @@ class CreateBloodRequestTable extends Migration
                 ->nullOnDelete();
             $table->date('donated_date')->nullable();
             $table->string('comment')->nullable();
-            $table->string('status')->default(0);
+            $table->string('status')->default('0');
             $table->timestamps();
         });
     }
