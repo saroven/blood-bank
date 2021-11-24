@@ -8,8 +8,8 @@
             @elseif(session()->has('success'))
                 <x-success-message :message="session('success')" />
             @endif
-            <h4>Profile</h4><br>
-            <form method="POST" action="{{ route('public.profile.update') }}" accept-charset="UTF-8" id="regiForm" novalidate=""><input name="_token" type="hidden" value="CrxOQ70ErMARFEc4aXO0y5bjT5Y7lWWtWyKEf0Ig">
+            <h4 class="mb-2">Profile</h4> <span><a href="{{ route('public.myBloodRequests') }}">My Blood Requests</a> | <a href="#">Donated Bloods</a></span><br>
+            <form class="mt-2" method="POST" action="{{ route('public.profile.update') }}" accept-charset="UTF-8" id="regiForm" novalidate="">
                 @csrf
                 <div class="form-group">
                     <label class="control-label">Name<span>*</span></label>
