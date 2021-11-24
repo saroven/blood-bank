@@ -81,7 +81,7 @@
                                                                      <span class="badge badge-warning">@php($status = $data->donate_status == 1 ? 'Available' : 'Not Available') {{ $status }}</span>
                                                             </span>
                                                         </div>
-                                                        <a style="width:100%" href="#" class="btn btn-outline-danger mt-2" onclick="return confirmInterested(1018)">Request for blood</a>
+                                                        <a style="width:100%" href="@if(Auth::guest()) {{ route('login') }} @endif" class="btn btn-outline-danger mt-2" onclick="">Request for blood</a>
                                                     </div>
                                             </div>
                                         @endforeach

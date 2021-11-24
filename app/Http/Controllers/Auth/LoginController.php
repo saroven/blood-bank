@@ -34,19 +34,16 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function showLoginForm()
-    {
-        return view('login');
-    }
-    protected function authenticated(Request $request, $user)
-    {
-    if ($user->role_id == 2) {
-        return redirect()->route('dashboard');
-    }
-     return redirect('/');
-    }
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->redirectTo = url()->previous();
+    }
+    public function showLoginForm()
+    {
+        if(!session()->has('url.intended'))
+        {
+            session(['url.intended' => url()->previous()]);
+        }
+        return view('login');
     }
 }
