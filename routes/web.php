@@ -21,9 +21,8 @@ Route::name('public.')->group(function (){
         return view('public.volunteer');
     })->name('volunteer');
 
-    Route::get('/blood-request', function (){
-        return view('public.blood-seeking-requests');
-    })->name('bloodRequest');
+    Route::get('/blood-request', [HomeController::class, 'showBloodRequest'])->name('bloodRequest');
+    Route::get('/donate-blood/{id}', [HomeController::class, 'donateBlood'])->name('donateBlood');
     Route::get('/user-guide', function (){
         return view('public.user-guide');
     })->name('userGuide');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use DB;
 use Illuminate\Http\Request;
 use mysql_xdevapi\Exception;
@@ -74,6 +75,29 @@ class HomeController extends Controller
              return redirect()->back()->with('success', 'Update successful');
         }catch (\Exception $exception){
             \Log::error($exception);
+            return redirect()->back()->with('error', 'Something went wrong!');
+        }
+    }
+
+    public function showBloodRequest()
+    {
+        $requests = DB::table('blood_request')
+            ->where('blood_request.status', '=', 0)
+            ->join('users', 'blood_request.user_id', '=', 'users.id')
+            ->join('districts', 'blood_request.district_id', '=', 'districts.id')
+            ->select('blood_request.id as request_id', 'blood_request.blood_group', 'blood_request.number_of_bags', 'blood_request.need_date', 'blood_request.mobile', 'blood_request.location', 'blood_request.comment', 'blood_request.created_at as request_date', 'districts.name as district_name', 'users.name as requester_name')
+            ->get();
+        return view('public.blood-seeking-requests', ['requests' => $requests]);
+    }
+
+    public function donateBlood(Request $request)
+    {
+        if (Auth::check()){
+            $user_details = DB::table('user_details')
+                ->where('user_id', Auth::user()->id)
+                ->first();
+            return $user_details;
+        }else{
             return redirect()->back()->with('error', 'Something went wrong!');
         }
     }
