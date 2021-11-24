@@ -93,10 +93,23 @@ class HomeController extends Controller
     public function donateBlood(Request $request)
     {
         if (Auth::check()){
-            $user_details = DB::table('user_details')
-                ->where('user_id', Auth::user()->id)
+            $donated = DB::table('blood_donation')
+                ->where('request_id', $request->id)
                 ->first();
-            return $user_details;
+            if ($donated != ''){
+                return redirect()->back()->with('error', 'Already Placed one request');
+            }
+            $request_details = DB::table('blood_request')
+                ->where('id', $request->id)
+                ->first();
+
+            DB::table('blood_donation')
+                ->insert([
+                    'request_id' => $request->id,
+                    'requester_id' => $request_details->user_id,
+                    'donor_id' => Auth::user()->id,
+                ]);
+            return redirect()->back()->with('success', 'Blood Donation Request placed, wait for call');
         }else{
             return redirect()->back()->with('error', 'Something went wrong!');
         }
