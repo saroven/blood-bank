@@ -150,7 +150,8 @@ class HomeController extends Controller
             'need_date' => 'required|date',
             'district' => 'required|integer',
             'comment' => 'required|string|max:1000',
-            'mobile' => 'required|string|min:10|max:11'
+            'mobile' => 'required|string|min:10|max:11',
+            'location' => 'required|string|max:255'
         ]);
         if (Auth::check()){
             DB::table('blood_request')
@@ -161,7 +162,8 @@ class HomeController extends Controller
                     'need_date' => $request->need_date,
                     'district_id' => $request->district,
                     'comment' => $request->comment,
-                    'mobile' => $request->mobile
+                    'mobile' => $request->mobile,
+                    'location' => $request->location
                 ]);
             return redirect()->back()->with('success', 'Request added successful');
         }else{

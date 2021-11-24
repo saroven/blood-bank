@@ -67,6 +67,9 @@
                                                             </span>
                                                         </div>
                                                         <div class="text">
+                                                            Location: {{ $data->location }}
+                                                        </div>
+                                                        <div class="text">
                                                             More Details: {{ $data->comment }}
                                                         </div>
                                                         <small class="text-muted">Requested: {{ \Carbon\Carbon::parse($data->request_date)->diffForHumans() }}</small>
