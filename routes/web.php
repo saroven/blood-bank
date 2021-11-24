@@ -17,9 +17,8 @@ Route::name('public.')->group(function (){
 
     Route::get('/blood-donor', [HomeController::class,'findDonors'])->name('findDonors');
 
-    Route::get('/volunteer', function () {
-        return view('public.volunteer');
-    })->name('volunteer');
+    Route::get('/volunteer', [HomeController::class, 'ShowVolunteer'])->name('volunteer');
+    Route::post('/volunteer', [HomeController::class, 'filterVolunteer'])->name('filterVolunteer');
 
     Route::get('/blood-request', [HomeController::class, 'showBloodRequest'])->name('bloodRequest');
     Route::get('/donate-blood/{id}', [HomeController::class, 'donateBlood'])->name('donateBlood');

@@ -114,4 +114,31 @@ class HomeController extends Controller
             return redirect()->back()->with('error', 'Something went wrong!');
         }
     }
+
+    public function showVolunteer()
+    {
+        $districts = DB::table('districts')->select('id', 'name')->get();
+        $volunteers = DB::table('users')
+            ->where('role_id', '!=', '2')
+            ->join('user_details', 'users.id', '=', 'user_details.user_id')
+            ->join('districts', 'user_details.district_id', '=', 'districts.id')
+            ->select('users.name', 'user_details.blood_group', 'user_details.mobile', 'user_details.last_donate',
+             'user_details.donate_status', 'user_details.donate_status', 'districts.name as district_name')
+            ->get();
+        return view('public.volunteer', ['volunteers' => $volunteers, 'districts' => $districts]);
+    }
+    public function filterVolunteer(Request $request)
+    {
+        $districts = DB::table('districts')->select('id', 'name')->get();
+        $volunteers = DB::table('users')
+            ->where('role_id', '!=', '2')
+            ->where('user_details.district_id', '=', $request->district)
+            ->join('user_details', 'users.id', '=', 'user_details.user_id')
+            ->join('districts', 'user_details.district_id', '=', 'districts.id')
+            ->select('users.name', 'user_details.blood_group', 'user_details.mobile', 'user_details.last_donate',
+             'user_details.donate_status', 'user_details.donate_status', 'districts.name as district_name')
+            ->get();
+        return view('public.volunteer', ['volunteers' => $volunteers, 'districts' => $districts, 'old' => $request->district]);
+    }
+
 }
