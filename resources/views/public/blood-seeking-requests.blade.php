@@ -73,7 +73,10 @@
                                                             More Details: {{ $data->comment }}
                                                         </div>
                                                         <small class="text-muted">Requested: {{ \Carbon\Carbon::parse($data->request_date)->diffForHumans() }}</small>
-                                                        <a style="width:100%" href=" @if(!Auth::check()) {{ route('login') }} @else {{ route('public.donateBlood', $data->request_id) }} @endif " class="btn btn-outline-danger mt-2">Interested To Donate</a>
+                                                        @php($username =  auth()->user()->name ?? '')
+                                                        @if($data->requester_name != $username)
+                                                            <a style="width:100%" href=" @if(!Auth::check()) {{ route('login') }} @else {{ route('public.donateBlood', $data->request_id) }} @endif " class="btn btn-outline-danger mt-2">Interested To Donate</a>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             @endforeach
