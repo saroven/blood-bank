@@ -24,6 +24,16 @@
                                 <div class="box">
                                     <div class="row">
                                         @foreach($searchData as $data)
+                                            @php
+                                                $now = time(); // or your date as well
+                                                $last_donate = $data->last_donate ?? $now;
+                                                $your_date = strtotime($last_donate);
+                                                $datediff = $now - $your_date;
+                                                $totalTime = round($datediff / (60 * 60 * 24));
+                                            @endphp
+                                            @if($totalTime > '90')
+                                                @continue
+                                            @endif
                                             <div class="col-sm-4">
                                                     <div class="box-part text-center">
                                                         <h5 class="blood-group" style="padding: 4px;">

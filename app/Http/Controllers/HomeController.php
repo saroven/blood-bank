@@ -29,6 +29,7 @@ class HomeController extends Controller
              'user_details.donate_status', 'districts.name as district_name')
             ->get();
 
+
         return view('public.blood-donors', ['searchData' => $searchData]);
     }
     public function showProfilePage()
