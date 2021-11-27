@@ -30,14 +30,12 @@ class SettingController extends Controller
 //                $fileName,
 //                'public'
 //            );
-            $oldImage = public_path('logo'). ''.$siteInfo->logo;
 
-//            if (\File::exists($siteInfo->logo)){
-//                return 'has file';
-//            }else{
-//                return 'no file';
-//            }
+            $fileName = '';
             if ($request->logo != null){
+                    if (\File::exists(public_path().'/'.$siteInfo->logo)){
+                        unlink(public_path().'/'.$siteInfo->logo);
+                    }
                 $fileName = time().'_logo.'.$request->logo->getClientOriginalExtension();
                 $request->logo->move(public_path('logo'), $fileName);
             }
@@ -61,13 +59,18 @@ class SettingController extends Controller
                 'address' => 'required|string|max:255',
                 'logo' => 'sometimes|required|file',
             ]);
+            $fileName = '';
+            if ($request->logo != null){
+                $fileName = time().'_logo.'.$request->logo->getClientOriginalExtension();
+                $request->logo->move(public_path('logo'), $fileName);
+            }
             \DB::table('site_info')
                 ->insert([
                     'site_title' => $request->site_title,
                     'phone' => $request->phone,
                     'email' => $request->email,
                     'address' => $request->address,
-                    'logo' => $request->logo
+                    'logo' => '/logo/'.$fileName
                 ]);
             return redirect()->back()->with('success', 'Inserted successful');
         }
