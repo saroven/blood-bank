@@ -16,6 +16,7 @@ Route::name('public.')->group(function (){
         ->name('profile.update')->middleware(['auth']); //update profile
 
     Route::get('/blood-donor', [HomeController::class,'findDonors'])->name('findDonors');
+    Route::get('/blood-donor/{id}', [HomeController::class,'sendBloodRequestToDonorPage'])->name('sendBloodRequestToDonorPage')->middleware('auth');
 
     Route::get('/volunteer', [HomeController::class, 'ShowVolunteer'])->name('volunteer');
     Route::post('/volunteer', [HomeController::class, 'filterVolunteer'])->name('filterVolunteer');

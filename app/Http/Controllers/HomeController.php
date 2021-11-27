@@ -27,7 +27,7 @@ class HomeController extends Controller
             ->where('user_details.blood_group', $request->blood_group)
             ->join('user_details', 'users.id', '=', 'user_details.user_id')
             ->join('districts', 'user_details.district_id', '=', 'districts.id')
-            ->select('users.name', 'user_details.blood_group', 'user_details.mobile', 'user_details.last_donate',
+            ->select('users.id', 'users.name', 'user_details.blood_group', 'user_details.mobile', 'user_details.last_donate',
              'user_details.donate_status', 'districts.name as district_name')
             ->get();
 
@@ -185,6 +185,11 @@ class HomeController extends Controller
         }else{
             return redirect()->back()->with('error', 'Something went wrong!');
         }
+    }
+
+    public function sendBloodRequestToDonorPage()
+    {
+        return view('public.requestBlood');
     }
 
 }

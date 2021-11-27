@@ -4,7 +4,7 @@
         <div class="single" style="margin-top: 150px">
         <div class="container">
             <div class="row">
-                                 <div class="col-sm-12">
+                <div class="col-sm-12">
                     <form
                       action="/blood-donor"
                       class="check-form" method="get"
@@ -62,7 +62,8 @@
                                             @if($totalTime < '90')
                                                 @continue
                                             @endif
-                                            <div class="col-sm-4">
+                                            <a href="{{route('public.sendBloodRequestToDonorPage', $data->id)}}">
+                                                <div class="col-sm-4">
                                                     <div class="box-part text-center">
                                                         <h5 class="blood-group" style="padding: 4px;">
                                                             {{ $data->blood_group }}
@@ -83,6 +84,7 @@
                                                         </div>
                                                     </div>
                                             </div>
+                                            </a>
                                         @endforeach
                                             <div class="pagination-wrapper">
                                         </div>
