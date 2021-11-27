@@ -151,29 +151,31 @@
     <!-- Home Page About Section End -->
 
     <!-- Intro Text Section Begin -->
-    <section class="intro-section">
-      <div class="container">
-        <div class="row intro-text">
-          <div class="col-lg-6">
-            <div class="intro-left">
-              <div class="section-title">
-                <span>Moving forward for the welfare of humanity</span>
-                <h2>We are in your town</h2>
+        @guest
+            <section class="intro-section">
+              <div class="container">
+                <div class="row intro-text">
+                  <div class="col-lg-6">
+                    <div class="intro-left">
+                      <div class="section-title">
+                        <span>Moving forward for the welfare of humanity</span>
+                        <h2>We are in your town</h2>
+                      </div>
+                      <p>
+                      We are now in your city. Registration now and be a proud member of the our family and continue to serve humanity.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="intro-right">
+                      <a href="register.html" class="primary-btn"
+                        >Join as a volunteer</a
+                      >
+                    </div>
+                  </div>
+                </div>
               </div>
-              <p>
-              We are now in your city. Registration now and be a proud member of the our family and continue to serve humanity.
-              </p>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="intro-right">
-              <a href="register.html" class="primary-btn"
-                >Join as a volunteer</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+            </section>
+        @endguest
     <!-- Intro Text Section End -->
 @endsection
