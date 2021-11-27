@@ -17,8 +17,11 @@ class CreateBloodRequestTable extends Migration
             $table->id();
             $table->foreignId('user_id')
                 ->constrained()
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+                ->onUpdate('cascade');
+            $table->foreignId('requested_to')
+                ->nullable()
+                ->constrained('users')
+                ->onUpdate('cascade');
             $table->string('blood_group');
             $table->tinyInteger('number_of_bags');
             $table->date('need_date');
@@ -26,14 +29,11 @@ class CreateBloodRequestTable extends Migration
             $table->string('location')->nullable();
             $table->foreignId('district_id')
                 ->constrained()
-                ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreignId('donated_by')
                 ->nullable()
                 ->constrained('users')
-                ->onDelete('cascade')
-                ->onUpdate('cascade')
-                ->nullOnDelete();
+                ->onUpdate('cascade');
             $table->date('donated_date')->nullable();
             $table->string('comment')->nullable();
             $table->string('status')->default('0');

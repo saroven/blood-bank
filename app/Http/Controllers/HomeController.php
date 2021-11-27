@@ -187,9 +187,39 @@ class HomeController extends Controller
         }
     }
 
-    public function sendBloodRequestToDonorPage()
+    public function sendBloodRequestToDonorPage(Request $request)
     {
-        return view('public.requestBlood');
+        $districts = DB::table('districts')->select('id', 'name')->get();
+        return view('public.requestBlood', ['userId' => $request->id, 'districts'=> $districts]);
+    }
+    public function sendBloodRequestToDonor(Request $request)
+    {
+        $request->validate([
+            'blood_group' => 'required|string|min:0|max:10',
+            'number_of_bag' => 'required|integer|max:10|min:0',
+            'need_date' => 'required|date',
+            'district' => 'required|integer',
+            'comment' => 'required|string|max:1000',
+            'mobile' => 'required|string|min:10|max:11',
+            'location' => 'required|string|max:255'
+        ]);
+        if (Auth::check()){
+            DB::table('blood_request')
+                ->insert([
+                    'user_id' => Auth::user()->id,
+                    'blood_group' => $request->blood_group,
+                    'requested_to' => $request->id,
+                    'number_of_bags' => $request->number_of_bag,
+                    'need_date' => $request->need_date,
+                    'district_id' => $request->district,
+                    'comment' => $request->comment,
+                    'mobile' => $request->mobile,
+                    'location' => $request->location
+                ]);
+            return redirect()->back()->with('success', 'Request added successful');
+        }else{
+            return redirect()->back()->with('error', 'Something went wrong!');
+        }
     }
 
 }
