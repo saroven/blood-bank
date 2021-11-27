@@ -1,3 +1,8 @@
+@php
+    $siteInformation = DB::table('site_info')
+                            ->select('site_title', 'logo', 'phone', 'address')
+                            ->first();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -39,7 +44,7 @@
           <div class="inner-header">
             <div class="logo">
               <a href="{{ route('public.home') }}"
-                ><img src="{{ asset('visitor/img/logo.png') }}" alt=""
+                ><img src="{{ asset($siteInformation->logo ?? '') }}" alt="{{ $siteInformation->site_title ?? 'Blood Bank' }}"
                 /></a>
             </div>
 
@@ -138,10 +143,10 @@
             <div class="footer-item">
               <div class="footer-logo">
                 <a href="{{ route('public.home') }}"
-                  ><img src="{{ asset('visitor/img/logo.png') }}" alt=""
+                  ><img src="{{ asset($siteInformation->logo ?? '') }}" alt="{{ $siteInformation->site_title ?? 'Blood Bank' }}"
                 /></a>
               </div>
-              <p>Service to humanity is the main goal of us.</p>
+{{--              <p>Service to humanity is the main goal of us.</p>--}}
             </div>
           </div>
           <div class="col-lg-4 col-md-4">
