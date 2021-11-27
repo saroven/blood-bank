@@ -22,6 +22,7 @@ Route::name('public.')->group(function (){
     Route::get('/volunteer', [HomeController::class, 'ShowVolunteer'])->name('volunteer');
     Route::post('/volunteer', [HomeController::class, 'filterVolunteer'])->name('filterVolunteer');
 
+    Route::get('/received-blood-request', [HomeController::class, 'receivedBloodRequests'])->name('receivedBloodRequests')->middleware('auth');
     Route::get('/blood-request', [HomeController::class, 'showBloodRequest'])->name('bloodRequest');
     Route::get('/my-blood-request', [HomeController::class, 'myBloodRequests'])->name('myBloodRequests');
     Route::post('/blood-request', [HomeController::class, 'addBloodRequest'])->name('AddBloodRequest');

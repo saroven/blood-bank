@@ -8,7 +8,11 @@
             @elseif(session()->has('success'))
                 <x-success-message :message="session('success')" />
             @endif
-            <h4 class="mb-2">Profile</h4> <span><a href="{{ route('public.myBloodRequests') }}">My Blood Requests</a> | <a href="#">Donated Bloods</a></span><br>
+            <h4 class="mb-2">Profile</h4>
+                <span><a href="{{ route('public.myBloodRequests') }}">My Blood Requests</a> |
+                    <a href="#">Donated Bloods</a>  |
+                    <a href="{{ route('public.receivedBloodRequests') }}">Received Blood Requests</a>
+                </span><br>
             <form class="mt-2" method="POST" action="{{ route('public.profile.update') }}" accept-charset="UTF-8" id="regiForm" novalidate="">
                 @csrf
                 <div class="form-group">
