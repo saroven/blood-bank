@@ -3,9 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\categoryController;
 use App\Http\Controllers\HomeController;
-//Route::get('/', function () {
-//        return view('index');
-//    })->name('home');
+
 Route::name('public.')->group(function (){
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -72,9 +70,7 @@ Route::prefix('dashboard')->group(function (){
 });
 
 Auth::routes();
-//Route::get('/home', function (){
-//    return redirect('/');
-//})->name('home');
+
 
 Route::prefix('user')->group(function (){
     Route::middleware(['admin'])->group(function (){

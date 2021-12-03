@@ -18,7 +18,7 @@
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href="{{ route('home') }}"><b>{{ env('app_name') }}</b></a>
+    <a href="{{ route('public.home') }}"><b>{{ env('app_name') ?? 'Blood Bank' }}</b></a>
   </div>
 
   <div class="card">
