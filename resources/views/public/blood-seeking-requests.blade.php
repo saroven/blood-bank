@@ -47,9 +47,9 @@
                             <div class="row">
                                 @foreach($requests as $data)
                                     @php
-                                        $donor_data = \DB::table('blood_donation')
+                                        $donor_data = DB::table('blood_donation')
                                         ->join('user_details', 'blood_donation.donor_id', '=', 'user_details.user_id')
-                                        ->select('blood_donation.request_id', 'user_details.mobile')
+                                        ->select('blood_donation.request_id', 'blood_donation.requester_id', 'user_details.mobile')
                                         ->where('request_id', $data->request_id)
                                         ->first();
                                     @endphp
@@ -70,14 +70,15 @@
                                                 <small>Amount: {{ $data->number_of_bags.' bag' }}</small><br>
                                                 <small>Need Date: {{ $data->need_date }}</small><br>
                                                 <span>Status:
+                                                    @php($donorRequestId = $donor_data->request_id ?? 0)
+                                                    @php($requesterId = $donor_data->requester_id ?? 0)
                                                     @if($data->status == '0')
+
                                                     {{-- check if donor is requested to donate or not --}}
                                                         @if (
-                                                            // Auth::user()->id
-                                                            // ==
-                                                            // $data->requester_id
-                                                            // &&
-                                                            $donor_data->request_id ?? 0 == $data->request_id
+                                                            auth()->user()->id == $requesterId
+                                                            &&
+                                                            $donorRequestId == $data->request_id
                                                         )
                                                             <span class="badge badge-info">
                                                                 Donor is waiting for call. Please call
@@ -88,7 +89,7 @@
                                                                 Waiting for Donor
                                                             </span>
                                                         @endif
-                                                    @else
+                                                    @elseif($data->status != '0')
                                                         <span class="badge badge-success">Donated</span>
                                                     @endif
                                                 </span>
